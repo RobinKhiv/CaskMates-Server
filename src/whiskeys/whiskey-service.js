@@ -1,8 +1,8 @@
 const xss = require('xss')
 const Treeize = require('treeize')
 
-const ThingsService = {
-  getAllThings(db) {
+const WhiskeysService = {
+  getAllWhiskeys(db) {
     return db
       .from('whiskey AS whs')
       .select(
@@ -38,12 +38,12 @@ const ThingsService = {
   },
 
   getById(db, id) {
-    return ThingsService.getAllThings(db)
+    return WhiskeysService.getAllWhiskeys(db)
       .where('whs.id', id)
       .first()
   },
 
-  getReviewsForThing(db, whiskey_id) {
+  getReviewsForWhiskey(db, whiskey_id) {
     return db
       .from('whiskey_reviews AS rev')
       .select(
@@ -125,4 +125,4 @@ const userFields = [
   'usr.date_modified AS user:date_modified',
 ]
 
-module.exports = whiskeysService
+module.exports = WhiskeysService
