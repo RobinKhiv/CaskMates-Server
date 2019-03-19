@@ -22,8 +22,8 @@ app.use(morgan(morganOption, {
   skip: () => NODE_ENV === 'test'
 }));
 
-app.use(cors());
 app.use(helmet());
+app.use(cors());
 app.get('/', (req, res) => {
   res.send('Hello, world!');});
 

@@ -8,31 +8,32 @@ const WhiskeysService = {
       .select(
         'whs.id',
         'whs.title',
-        'whs.date_created',
-        'whs.content',
-        'whs.price',
+        'whs.image',
+        'whs.origin',
         'whs.abv',
+        'whs.price',
+        'whs.content',
         'whs.nose',
         'whs.palate',
         'whs.finish',
-        'whs.image',
+        'whs.date_created',
         ...userFields,
         db.raw(
           `count(DISTINCT rev) AS number_of_reviews`
         ),
         db.raw(
           `AVG(rev.rating) AS average_review_rating`
-        ),
+        )
       )
       .leftJoin(
         'whiskey_reviews AS rev',
-        'thg.id',
-        'rev.whiskey_id',
+        'whs.id',
+        'rev.whiskey_id'
       )
       .leftJoin(
         'whiskey_users AS usr',
-        'thg.user_id',
-        'usr.id',
+        'whs.user_id',
+        'usr.id'
       )
       .groupBy('whs.id', 'usr.id')
   },
@@ -64,11 +65,11 @@ const WhiskeysService = {
       .groupBy('rev.id', 'usr.id')
   },
 
-  serializewhiskeys(whiskey) {
-    return whiskey.map(this.serializewhiskey)
+  serializeWhiskeys(whiskey) {
+    return whiskey.map(this.serializeWhiskey)
   },
 
-  serializewhiskey(whiskey) {
+  serializeWhiskey(whiskey) {
     const whiskeyTree = new Treeize()
 
     // Some light hackiness to allow for the fact that `treeize`

@@ -1,5 +1,5 @@
 const express = require('express')
-const whiskeysService = require('./whiskey-service')
+const WhiskeysService = require('./whiskey-service')
 const { requireAuth } = require('../middleware/jwt-auth')
 
 const whiskeysRouter = express.Router()
@@ -7,9 +7,9 @@ const whiskeysRouter = express.Router()
 whiskeysRouter
   .route('/')
   .get((req, res, next) => {
-    whiskeysService.getAllwhiskeys(req.app.get('db'))
+    WhiskeysService.getAllWhiskeys(req.app.get('db'))
       .then(whiskeys => {
-        res.json(whiskeysService.serializeWhiskeys(whiskeys))
+        res.json(WhiskeysService.serializeWhiskeys(whiskeys))
       })
       .catch(next)
   })
@@ -17,13 +17,13 @@ whiskeysRouter
   whiskeysRouter
   .route('/:whiskey_id')
   .all(requireAuth)
-  .all(checkThingExists)
+  .all(checkWhiskeyExists)
   .get((req, res) => {
-    res.json(whiskeysService.serializeThing(res.whiskey))
+    res.json(WhiskeysService.serializeThing(res.whiskey))
   })
 
   whiskeysRouter.route('/:whiskey_id/reviews/')
-  .all(checkThingExists)
+  .all(checkWhiskeyExists)
   .all(requireAuth)
   .get((req, res, next) => {
     whiskeysService.getReviewsForWhiskey(
