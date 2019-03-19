@@ -7,6 +7,10 @@ const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
+const whiskeysRouter = require('./whiskeys/whiskey-router');
+const reviewsRouter = require('./reviews/reviews-router');
+const usersRouter =require('./Users/users-router');
+const authRouter = require('./auth/auth-router');
 
 const app = express();
 
@@ -22,6 +26,11 @@ app.use(cors());
 app.use(helmet());
 app.get('/', (req, res) => {
   res.send('Hello, world!');});
+
+app.use('/api/whiskeys', whiskeysRouter);
+app.use('/api/reviews', reviewsRouter);
+app.use('/api/auth', authRouter);
+app.use('/api/users', usersRouter);
 
 
 app.use(function errorHandler(error, req, res, next) {
