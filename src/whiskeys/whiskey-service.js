@@ -64,6 +64,16 @@ const WhiskeysService = {
       )
       .groupBy('rev.id', 'usr.id')
   },
+  insertWhiskey(db, newWhiskey) {
+    return db
+      .insert(newWhiskey)
+      .into('whiskey')
+      .returning('*')
+      .then(([whiskey]) => whiskey)
+      .then(whiskey =>
+        WhiskeysService.getById(db, whiskey.id)
+      )
+  },
 
   serializeWhiskeys(whiskey) {
     return whiskey.map(this.serializeWhiskey)

@@ -5,5 +5,5 @@ module.exports = {
   NODE_ENV: process.env.NODE_ENV || 'development',
   DB_URL: process.env.DATABASE_URL || 'postgresql://whiskey@localhost/whiskey',
   JWT_SECRET: process.env.JWT_SECRET || 'demo-only',
-  JWT_EXPIRY: process.env.JWT_EXPIRY || '20s'
+  JWT_EXPIRY: process.env.JWT_EXPIRY || '5m'
 };
