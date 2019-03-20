@@ -14,8 +14,8 @@ whiskeysRouter
       })
       .catch(next)
   })
-  .post(jsonBodyParser, (req, res, next) => {
-    const {  title, image, origin, abv, price, content, nose, palate, finish} = req.body;
+  .post(requireAuth, jsonBodyParser, (req, res, next) => {
+    const {  title } = req.body;
     const newWhiskey = { title };
 
     for (const [key, value] of Object.entries(newWhiskey))
@@ -23,7 +23,7 @@ whiskeysRouter
         return res.status(400).json({
           error: `Missing '${key}' in request body`
         });
-
+    
     newWhiskey.image = req.body.image;
     newWhiskey.origin = req.body.origin;
     newWhiskey.abv = req.body.abv;
@@ -32,13 +32,14 @@ whiskeysRouter
     newWhiskey.nose = req.body.nose;
     newWhiskey.palate = req.body.palate;
     newWhiskey.finish = req.body.finish;
-    console.log(newWhiskey);
-
+    newWhiskey.user_id = req.user.id;
+    
     WhiskeysService.insertWhiskey(
       req.app.get('db'),
       newWhiskey
     )
       .then(whiskey => {
+        console.log(whiskey);
         res
           .status(201)
           // .location(path.posix.join(req.originalUrl, `/${whiskey.id}`))
@@ -74,7 +75,7 @@ async function checkWhiskeyExists(req, res, next) {
   try {
     const thing = await WhiskeysService.getById(
       req.app.get('db'),
-      req.params.thing_id
+      req.params.whiskey_id
     )
 
     if (!whiskey)
