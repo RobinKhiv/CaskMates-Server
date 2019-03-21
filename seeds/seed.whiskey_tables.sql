@@ -17,9 +17,9 @@ VALUES
 
 INSERT INTO whiskey (title, image, origin, abv, price, content, nose, palate, finish,  user_id)
 VALUES
-  ('Jameson', 'https://loremflickr.com/750/300/landscape?random=1', 'Ireland', 40.2, 19.99, 'irish drink', 'smell', 'tastee','rough', 1  ),
-  ('Jamesono', 'https://loremflickr.com/750/300/landscape?random=1', 'Ireland', 40.2, 19.99, 'irish drink', 'smell', 'tastee', 'girly', 2  ),
-  ('Jamesone', 'https://loremflickr.com/750/300/landscape?random=1', 'Ireland', 40.2, 19.99, 'irish drink', 'smell', 'tastee', 'like posion', 1  );
+  ('Jameson', 'https://dydza6t6xitx6.cloudfront.net/ci-jameson-irish-whiskey-c31f346b1bd3ac77.png', 'Ireland', 40.2, 19.99, 'irish drink', 'smell', 'tastee','rough', 1  ),
+  ('Macallan', 'https://loremflickr.com/750/300/landscape?random=1', 'Ireland', 40.2, 19.99, 'irish drink', 'smell', 'tastee', 'girly', 2  ),
+  ('Jack Daniels', 'https://loremflickr.com/750/300/landscape?random=1', 'Ireland', 40.2, 19.99, 'irish drink', 'smell', 'tastee', 'like posion', 1  );
  
 
 INSERT INTO whiskey_reviews (

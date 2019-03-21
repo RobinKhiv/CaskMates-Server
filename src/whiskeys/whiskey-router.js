@@ -23,15 +23,9 @@ whiskeysRouter
         return res.status(400).json({
           error: `Missing '${key}' in request body`
         });
-    
-    newWhiskey.image = req.body.image;
-    newWhiskey.origin = req.body.origin;
-    newWhiskey.abv = req.body.abv;
-    newWhiskey.price = req.body.price;
-    newWhiskey.content = req.body.content;
-    newWhiskey.nose = req.body.nose;
-    newWhiskey.palate = req.body.palate;
-    newWhiskey.finish = req.body.finish;
+    const obj = Object.assign(newWhiskey, req.body)
+    console.log(obj);
+  
     newWhiskey.user_id = req.user.id;
     
     WhiskeysService.insertWhiskey(
