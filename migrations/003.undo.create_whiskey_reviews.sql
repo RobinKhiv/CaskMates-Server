@@ -1,1 +1,2 @@
+DROP TABLE IF EXISTS list;
 DROP TABLE IF EXISTS whiskey_reviews;

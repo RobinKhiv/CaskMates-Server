@@ -11,3 +11,8 @@ CREATE TABLE whiskey (
   finish text,
   date_created TIMESTAMP DEFAULT now() NOT NULL
 );
+
+CREATE TABLE whiskey_list (
+  id SERIAL PRIMARY KEY, 
+  title TEXT NOT NUll
+)

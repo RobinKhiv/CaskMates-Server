@@ -12,3 +12,4 @@ ALTER TABLE whiskey
   ADD COLUMN
     user_id INTEGER REFERENCES whiskey_users(id)
     ON DELETE SET NULL;
+

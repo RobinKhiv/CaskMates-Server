@@ -90,6 +90,7 @@ const WhiskeysService = {
     return {
       id: whiskeyData.id,
       title: xss(whiskeyData.title),
+      origin: xss(whiskeyData.origin),
       content: xss(whiskeyData.content),
       date_created: whiskeyData.date_created,
       palate: xss(whiskey.palate),
@@ -102,7 +103,7 @@ const WhiskeysService = {
     }
   },
 
-  serializewhiskeyReviews(whiskeys) {
+  serializeWhiskeyReviews(whiskeys) {
     return whiskeys.map(this.serializewhiskeyReview)
   },
 

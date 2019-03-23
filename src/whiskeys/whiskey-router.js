@@ -44,15 +44,15 @@ whiskeysRouter
 
   whiskeysRouter
   .route('/:whiskey_id')
-  .all(requireAuth)
+  // .all(requireAuth)
   .all(checkWhiskeyExists)
   .get((req, res) => {
-    res.json(WhiskeysService.serializeThing(res.whiskey))
+    res.json(WhiskeysService.serializeWhiskey(res.whiskey))
   })
 
   whiskeysRouter.route('/:whiskey_id/reviews/')
   .all(checkWhiskeyExists)
-  .all(requireAuth)
+  // .all(requireAuth)
   .get((req, res, next) => {
     WhiskeysService.getReviewsForWhiskey(
       req.app.get('db'),
@@ -67,10 +67,11 @@ whiskeysRouter
 /* async/await syntax for promises */
 async function checkWhiskeyExists(req, res, next) {
   try {
-    const thing = await WhiskeysService.getById(
+    const whiskey = await WhiskeysService.getById(
       req.app.get('db'),
       req.params.whiskey_id
     )
+   
 
     if (!whiskey)
       return res.status(404).json({
