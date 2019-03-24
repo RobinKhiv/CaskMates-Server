@@ -16,13 +16,13 @@ VALUES
   ('lexlor', 'Alex Taylor', 'Lex', '$2a$12$yUr39tJDoyPAPFzVMjxxI.v3YJlVJQW8nosfS8psRlXF./WK63XwK'),
   ('wippy', 'Ping Won In', 'Ping', '$2a$12$yUr39tJDoyPAPFzVMjxxI.v3YJlVJQW8nosfS8psRlXF./WK63XwK');
 
-INSERT INTO whiskey_list (title)
+INSERT INTO whiskey_list (list_name)
 VALUES
   ('Favorite List'),
   ('Wish List'), 
   ('Already Tried');
 
-INSERT INTO whiskey (title, image, origin, abv, price, content, nose, palate, finish,  user_id)
+INSERT INTO whiskey (whiskey_name, image, origin, abv, price, content, nose, palate, finish,  user_id)
 VALUES
   ('Jameson', 'https://dydza6t6xitx6.cloudfront.net/ci-jameson-irish-whiskey-c31f346b1bd3ac77.png', 'Ireland', 40.2, 19.99, 'irish drink', 'smell', 'tastee','rough', 1  ),
   ('Macallan', 'https://loremflickr.com/750/300/landscape?random=1', 'Ireland', 40.2, 19.99, 'irish drink', 'smell', 'tastee', 'girly', 2  ),

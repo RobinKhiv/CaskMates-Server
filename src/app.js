@@ -11,6 +11,7 @@ const whiskeysRouter = require('./whiskeys/whiskey-router');
 const reviewsRouter = require('./reviews/reviews-router');
 const usersRouter =require('./Users/users-router');
 const authRouter = require('./auth/auth-router');
+const listRouter = require('./lists/list-router');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use('/api/whiskeys', whiskeysRouter);
 app.use('/api/reviews', reviewsRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/lists', listRouter);
 
 
 app.use(function errorHandler(error, req, res, next) {

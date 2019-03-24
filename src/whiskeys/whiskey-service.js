@@ -7,7 +7,7 @@ const WhiskeysService = {
       .from('whiskey AS whs')
       .select(
         'whs.id',
-        'whs.title',
+        'whs.whiskey_name',
         'whs.image',
         'whs.origin',
         'whs.abv',
@@ -89,14 +89,14 @@ const WhiskeysService = {
 
     return {
       id: whiskeyData.id,
-      title: xss(whiskeyData.title),
+      whiskeyName: xss(whiskeyData.whiskey_name),
       origin: xss(whiskeyData.origin),
       content: xss(whiskeyData.content),
       date_created: whiskeyData.date_created,
       palate: xss(whiskey.palate),
       nose: xss(whiskey.nose),
       additional_comments: xss(whiskey.additional_comments),
-      image: whiskeyData.image,
+      image: xss(whiskeyData.image),
       user: whiskeyData.user || {},
       number_of_reviews: Number(whiskeyData.number_of_reviews) || 0,
       average_review_rating: Math.round(whiskeyData.average_review_rating) || 0,
@@ -119,9 +119,9 @@ const WhiskeysService = {
       id: reviewData.id,
       rating: reviewData.rating,
       whiskey_id: reviewData.whiskey_id,
-      nose: reviewData.nose,
-      palate: reviewData.palate,
-      additional_comments: reviewData.additional_comments,
+      nose: xss(reviewData.nose),
+      palate: xss(reviewData.palate),
+      additional_comments: xss(reviewData.additional_comments),
       user: reviewData.user || {},
       date_created: reviewData.date_created,
     }

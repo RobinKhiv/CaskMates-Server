@@ -1,6 +1,6 @@
 CREATE TABLE whiskey (
   id SERIAL PRIMARY KEY,
-  title TEXT NOT NULL,
+  whiskey_name TEXT NOT NULL,
   image TEXT,
   origin text,
   abv decimal(5,2),
@@ -14,5 +14,5 @@ CREATE TABLE whiskey (
 
 CREATE TABLE whiskey_list (
   id SERIAL PRIMARY KEY, 
-  title TEXT NOT NUll
+  list_name TEXT NOT NUll
 )

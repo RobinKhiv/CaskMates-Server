@@ -20,9 +20,11 @@ reviewsRouter
         return res.status(400).json({
           error: `Missing '${key}' in request body`
         });
+    
+    const obj = Object.assign(...newReview, req.body);
 
     newReview.user_id = req.user.id;
-
+    console.log(obj);
     ReviewsService.insertReview(
       req.app.get('db'),
       newReview

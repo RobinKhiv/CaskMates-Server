@@ -10,6 +10,7 @@ whiskeysRouter
   .get((req, res, next) => {
     WhiskeysService.getAllWhiskeys(req.app.get('db'))
       .then(whiskeys => {
+        console.log(whiskeys)
         res.json(WhiskeysService.serializeWhiskeys(whiskeys))
       })
       .catch(next)
