@@ -13,9 +13,15 @@ const ListService = {
         'list.list_id',    
         'whs.whiskey_name',
         'whiskey_list.list_name')
+      .where('list.user_id',userId)
       .leftJoin('whiskey AS whs', 'whs.id','=', 'list.whiskey_id')
       .leftJoin('whiskey_list', 'whiskey_list.id', '=', 'list.list_id')
-      .where('list.user_id',userId);
+  },
+  insertItemIntoList(db, item){
+    return db
+      .insert(item)
+      .into('list')
+      .returning('*');
   },
   serializeWhiskeyLists(lists){
     return lists.map(this.serializeWhiskeyList);
@@ -25,10 +31,13 @@ const ListService = {
     const listData = listTree.grow([list]).getData()[0]
     return {
       id: listData.id,
-      whiskey_id: (listData.whiskey_id),
+      whiskey_id: xss(listData.whiskey_id),
       listName: xss(listData.list_name),
-      whiskeyName: xss(listData.whiskey_name)
+      whiskeyName: xss(listData.whiskey_name),
+      number_of_reviews: Number(listData.number_of_reviews) || 0,
+      average_review_rating: Math.round(listData.average_review_rating) || 0
     };
   }
+
 };
 module.exports = ListService;

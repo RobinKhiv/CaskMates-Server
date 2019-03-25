@@ -1,6 +1,7 @@
 const express = require('express')
 const WhiskeysService = require('./whiskey-service')
 const { requireAuth } = require('../middleware/jwt-auth')
+const path = require('path');
 
 const whiskeysRouter = express.Router()
 const jsonBodyParser = express.json()
@@ -10,34 +11,31 @@ whiskeysRouter
   .get((req, res, next) => {
     WhiskeysService.getAllWhiskeys(req.app.get('db'))
       .then(whiskeys => {
-        console.log(whiskeys)
         res.json(WhiskeysService.serializeWhiskeys(whiskeys))
       })
       .catch(next)
   })
   .post(requireAuth, jsonBodyParser, (req, res, next) => {
-    const {  title } = req.body;
-    const newWhiskey = { title };
+    const {  whiskey_name } = req.body;
+    const notNullItems = { whiskey_name };
 
-    for (const [key, value] of Object.entries(newWhiskey))
+    for (const [key, value] of Object.entries(notNullItems))
       if (value == null)
         return res.status(400).json({
           error: `Missing '${key}' in request body`
         });
-    const obj = Object.assign(newWhiskey, req.body)
-    console.log(obj);
-  
-    newWhiskey.user_id = req.user.id;
+    const newWhiskey = Object.assign(req.body, {user_id: req.user.id})
     
     WhiskeysService.insertWhiskey(
       req.app.get('db'),
       newWhiskey
     )
       .then(whiskey => {
-        console.log(whiskey);
         res
           .status(201)
-          // .location(path.posix.join(req.originalUrl, `/${whiskey.id}`))
+          .location(path.posix.join(req.originalUrl, `/${whiskey.id}`))
+          .json(whiskey.id)
+          
           // .json(ReviewsService.serializeReview(review));
       })
       .catch(next);

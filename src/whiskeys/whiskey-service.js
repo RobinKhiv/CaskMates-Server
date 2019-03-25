@@ -89,8 +89,11 @@ const WhiskeysService = {
 
     return {
       id: whiskeyData.id,
+      whiskey_id: whiskeyData.id,
       whiskeyName: xss(whiskeyData.whiskey_name),
       origin: xss(whiskeyData.origin),
+      abv: xss(whiskeyData.abv),
+      price: xss(whiskeyData.price),
       content: xss(whiskeyData.content),
       date_created: whiskeyData.date_created,
       palate: xss(whiskey.palate),
@@ -99,7 +102,7 @@ const WhiskeysService = {
       image: xss(whiskeyData.image),
       user: whiskeyData.user || {},
       number_of_reviews: Number(whiskeyData.number_of_reviews) || 0,
-      average_review_rating: Math.round(whiskeyData.average_review_rating) || 0,
+      average_review_rating: Math.round(whiskeyData.average_review_rating) || 0
     }
   },
 
