@@ -32,5 +32,19 @@ listRouter
       newItemInList
     ).then(() => res.status(201));
   });
+listRouter
+  .route('/:listId')
+  .all(requireAuth)
+  .delete((req, res, next) => {
+    const userId = req.user.id;
+    const listId = req.params.listId;
+    console.log('listId', listId);
+    console.log('userID', userId)
+    ListService.deleteListItem(req.app.get('db'), listId, userId)
+      .then(()=> {
+        res.status(204).end();
+      })
+      .catch(next);
+  });
 
 module.exports = listRouter;

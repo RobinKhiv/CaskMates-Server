@@ -26,6 +26,12 @@ const ListService = {
   serializeWhiskeyLists(lists){
     return lists.map(this.serializeWhiskeyList);
   },
+  deleteListItem(db, listId, userId){
+    return db
+      .into('list')
+      .where({id: listId, user_id: userId})
+      .delete();
+  },
   serializeWhiskeyList(list){
     const listTree = new Treeize();
     const listData = listTree.grow([list]).getData()[0]
