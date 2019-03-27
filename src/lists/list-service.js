@@ -32,6 +32,12 @@ const ListService = {
       .where({id: listId, user_id: userId})
       .delete();
   },
+  updateList(db, id, user_id, newListFields) {
+    return db
+      .into('list')
+      .where({ id, user_id })
+      .update(newListFields);
+  },
   serializeWhiskeyList(list){
     const listTree = new Treeize();
     const listData = listTree.grow([list]).getData()[0]

@@ -30,7 +30,9 @@ listRouter
     ListService.insertItemIntoList(
       req.app.get('db'),
       newItemInList
-    ).then(() => res.status(201));
+    )
+      .then(() => res.status(201))
+      .catch(next);
   });
 listRouter
   .route('/:listId')
@@ -38,12 +40,27 @@ listRouter
   .delete((req, res, next) => {
     const userId = req.user.id;
     const listId = req.params.listId;
-    console.log('listId', listId);
-    console.log('userID', userId)
     ListService.deleteListItem(req.app.get('db'), listId, userId)
       .then(()=> {
         res.status(204).end();
       })
+      .catch(next);
+  })
+  .patch(jsonBodyParser, (req, res,next) =>{
+    console.log(req.body)
+    const user_id = req.user.id;
+    const oldListId = req.params.listId;
+    const {whiskey_id, list_id } =req.body;
+    const newListFields = {whiskey_id, list_id};
+    for(const[key, value] of Object.entries(newListFields))
+      if(value == null)
+        return res.status(400).json({
+          error: `Missing '${key}' in request body`
+        });
+    newListFields.user_id = user_id;
+    ListService.updateList(
+      req.app.get('db'), oldListId, user_id, newListFields)
+      .then(()=> res.status(204))
       .catch(next);
   });
 
