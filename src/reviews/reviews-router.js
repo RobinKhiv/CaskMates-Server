@@ -37,5 +37,30 @@ reviewsRouter
       })
       .catch(next);
   });
+reviewsRouter
+  .route('/:whiskey_id')
+  .all(requireAuth)
+  .post(jsonBodyParser, (req,res,next)=>{
+    let newReview = { rating: req.body.rating };
+    const whiskeyAndUserId = {
+      user_id: req.user.id,
+      whiskey_id: req.params.whiskey_id
+    };
+
+    for (const [key, value] of Object.entries(newReview))
+      if (value == null)
+        return res.status(400).json({
+          error: `Missing '${key}' in request body`
+        });
+
+        newReview = Object.assign(newReview, req.body, whiskeyAndUserId); 
+        console.log(newReview);
+        ReviewsService.insertReview(req.app.get('db'), newReview)
+      .then(review => {
+        res.status(201)
+          .json(ReviewsService.serializeReview(review));
+      })
+      .catch(next);
+  });
 
 module.exports = reviewsRouter;

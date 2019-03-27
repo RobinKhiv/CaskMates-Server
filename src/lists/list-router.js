@@ -47,7 +47,6 @@ listRouter
       .catch(next);
   })
   .patch(jsonBodyParser, (req, res,next) =>{
-    console.log(req.body)
     const user_id = req.user.id;
     const oldListId = req.params.listId;
     const {whiskey_id, list_id } =req.body;
@@ -60,7 +59,7 @@ listRouter
     newListFields.user_id = user_id;
     ListService.updateList(
       req.app.get('db'), oldListId, user_id, newListFields)
-      .then(()=> res.status(204))
+      .then(()=> res.status(204).end())
       .catch(next);
   });
 

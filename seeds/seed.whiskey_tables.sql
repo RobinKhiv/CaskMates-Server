@@ -45,6 +45,7 @@ INSERT INTO whiskey_reviews (
   rating,
   nose, 
   palate,
+  finish,
   additional_comments, 
   whiskey_id,
   user_id
@@ -53,6 +54,7 @@ INSERT INTO whiskey_reviews (
     4,
     'smell ya later',
     'taste ya later',
+    'finished it',
     'This thing is amazing.',
     1,
     2
@@ -61,6 +63,7 @@ INSERT INTO whiskey_reviews (
     4,
     'smell ya later',
     'taste ya later',
+    'finished it',
     'This thing is amazing.',
     1,
     1
@@ -69,6 +72,7 @@ INSERT INTO whiskey_reviews (
     4,
     'smell ya later',
     'taste ya later',
+    'finished it',
     'This thing is amazing.',
     1,
     3

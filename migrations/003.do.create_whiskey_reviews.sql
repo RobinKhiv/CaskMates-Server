@@ -3,6 +3,7 @@ CREATE TABLE whiskey_reviews (
     rating INTEGER NOT NULL,
     nose text,
     palate text,
+    finish text,
     additional_comments text,
     date_created TIMESTAMP DEFAULT now() NOT NULL,
     whiskey_id INTEGER
