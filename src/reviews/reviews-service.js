@@ -71,7 +71,18 @@ const ReviewsService = {
   serializewhiskeyReview(review) {
     const reviewTree = new Treeize();
     const reviewData = reviewTree.grow([ review ]).getData()[0];
-    this.serializeReview(reviewData);
+    // this.serializeReview(reviewData);
+    return {
+      id: reviewData.id,
+      rating: reviewData.rating,
+      nose: xss(reviewData.nose),
+      palate: xss(reviewData.palate),
+      additional_comments: xss(review.additional_comments),
+      whiskey_id: reviewData.whiskey_id,
+      date_created: reviewData.date_created,
+      user: reviewData.user || {},
+
+    };
   },
   serializeReview(review) {
     return {

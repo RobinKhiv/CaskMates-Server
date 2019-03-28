@@ -43,7 +43,7 @@ reviewsRouter
       req.app.get('db'),
       req.params.whiskey_id
     )
-      .then(reviews => {
+      .then(reviews => {console.log(reviews);
         res.json(ReviewsService.serializeWhiskeyReviews(reviews));
       })
       .catch(next);
