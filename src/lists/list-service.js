@@ -4,7 +4,7 @@ const Treeize = require('treeize');
 const ListService = {
   getWhiskeyList(db, userId){
     return db
-      .from('user_list')
+      .from('user_list AS list')
       .select(
         'list.id',
         'list.list_id',
