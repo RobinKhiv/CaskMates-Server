@@ -4,7 +4,7 @@ const Treeize = require('treeize');
 const ListService = {
   getWhiskeyList(db, userId){
     return db
-      .from('list')
+      .from('user_list')
       .select(
         'list.id',
         'list.list_id',
@@ -20,7 +20,7 @@ const ListService = {
   insertItemIntoList(db, item){
     return db
       .insert(item)
-      .into('list')
+      .into('user_list')
       .returning('*');
   },
   serializeWhiskeyLists(lists){
@@ -28,13 +28,13 @@ const ListService = {
   },
   deleteListItem(db, listId, userId){
     return db
-      .into('list')
+      .into('user_list')
       .where({id: listId, user_id: userId})
       .delete();
   },
   updateList(db, id, user_id, newListFields) {
     return db
-      .into('list')
+      .into('user_list')
       .where({ id, user_id })
       .update(newListFields);
   },

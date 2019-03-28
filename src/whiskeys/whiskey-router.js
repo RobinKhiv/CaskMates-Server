@@ -1,7 +1,7 @@
 const express = require('express')
 const WhiskeysService = require('./whiskey-service')
 const { requireAuth } = require('../middleware/jwt-auth')
-const path = require('path');
+// const path = require('path');
 
 const whiskeysRouter = express.Router()
 const jsonBodyParser = express.json()
@@ -16,15 +16,19 @@ whiskeysRouter
       .catch(next)
   })
   .post(requireAuth, jsonBodyParser, (req, res, next) => {
-    const {  whiskey_name } = req.body;
-    const notNullItems = { whiskey_name };
+    let newWhiskey = { whiskey_name: req.body };
 
-    for (const [key, value] of Object.entries(notNullItems))
+    for (const [key, value] of Object.entries(newWhiskey))
       if (value == null)
         return res.status(400).json({
           error: `Missing '${key}' in request body`
         });
-    const newWhiskey = Object.assign(req.body, {user_id: req.user.id})
+
+    newWhiskey = Object.assign(
+      newWhiskey, 
+      req.body, 
+      { user_id: req.user.id}
+    );
     
     WhiskeysService.insertWhiskey(
       req.app.get('db'),
@@ -33,37 +37,19 @@ whiskeysRouter
       .then(whiskey => {
         res
           .status(201)
-          .location(path.posix.join(req.originalUrl, `/${whiskey.id}`))
+          // .location(path.posix.join(req.originalUrl, `/${whiskey.id}`))
           .json(whiskey.id)
-          
-          // .json(ReviewsService.serializeReview(review));
       })
       .catch(next);
-  })
+  });
 
   whiskeysRouter
   .route('/:whiskey_id')
-  // .all(requireAuth)
   .all(checkWhiskeyExists)
   .get((req, res) => {
     res.json(WhiskeysService.serializeWhiskey(res.whiskey))
-  })
+  });
 
-  whiskeysRouter.route('/:whiskey_id/reviews/')
-  .all(checkWhiskeyExists)
-  // .all(requireAuth)
-  .get((req, res, next) => {
-    WhiskeysService.getReviewsForWhiskey(
-      req.app.get('db'),
-      req.params.whiskey_id
-    )
-      .then(reviews => {
-        res.json(WhiskeysService.serializeWhiskeyReviews(reviews))
-      })
-      .catch(next)
-  })
-
-/* async/await syntax for promises */
 async function checkWhiskeyExists(req, res, next) {
   try {
     const whiskey = await WhiskeysService.getById(
@@ -81,7 +67,7 @@ async function checkWhiskeyExists(req, res, next) {
     next()
   } catch (error) {
     next(error)
-  }
-}
+  };
+};
 
-module.exports = whiskeysRouter
+module.exports = whiskeysRouter;

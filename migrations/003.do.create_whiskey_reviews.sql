@@ -12,7 +12,7 @@ CREATE TABLE whiskey_reviews (
         REFERENCES whiskey_users(id) ON DELETE CASCADE NOT NULL
 );
 
-CREATE TABLE list (
+CREATE TABLE user_list (
   id SERIAL PRIMARY KEY,
   whiskey_id INTEGER
     REFERENCES whiskey(id) ON DELETE CASCADE NOT NULL,

@@ -2,6 +2,7 @@ BEGIN;
 
 TRUNCATE
   whiskey_reviews,
+  user_list,
   whiskey,
   whiskey_list,
   whiskey_users
@@ -28,7 +29,7 @@ VALUES
   ('Macallan', 'https://loremflickr.com/750/300/landscape?random=1', 'Ireland', 40.2, 19.99, 'irish drink', 'smell', 'tastee', 'girly', 2  ),
   ('Jack Daniels', 'https://loremflickr.com/750/300/landscape?random=1', 'Ireland', 40.2, 19.99, 'irish drink', 'smell', 'tastee', 'like posion', 1  );
 
-INSERT INTO list (whiskey_id, user_id, list_id)
+INSERT INTO user_list (whiskey_id, user_id, list_id)
 VALUES
   (2, 2, 1),
   (3, 2, 1),
