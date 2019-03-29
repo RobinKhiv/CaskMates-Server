@@ -8,9 +8,7 @@ const ReviewsService = {
       .select(
         'rev.id',
         'rev.rating',
-        'rev.palate',
-        'rev.nose',
-        'rev.additional_comments',
+        'rev.tasting',
         'rev.date_created',
         'rev.whiskey_id',
         db.raw(
@@ -51,9 +49,7 @@ const ReviewsService = {
       .select(
         'rev.id',
         'rev.rating',
-        'rev.palate',
-        'rev.nose',
-        'rev.additional_comments',
+        'rev.tasting',
         'rev.date_created',
         ...userFields
       )
@@ -75,9 +71,7 @@ const ReviewsService = {
     return {
       id: reviewData.id,
       rating: reviewData.rating,
-      nose: xss(reviewData.nose),
-      palate: xss(reviewData.palate),
-      additional_comments: xss(review.additional_comments),
+      tasting: xss(review.tasting),
       whiskey_id: reviewData.whiskey_id,
       date_created: reviewData.date_created,
       user: reviewData.user || {},
@@ -88,9 +82,7 @@ const ReviewsService = {
     return {
       id: review.id,
       rating: review.rating,
-      nose: xss(review.nose),
-      palate: xss(review.palate),
-      additional_comments: xss(review.additional_comments),
+      tasting: xss(review.tasting),
       whiskey_id: review.whiskey_id,
       date_created: review.date_created,
       user: review.user || {},

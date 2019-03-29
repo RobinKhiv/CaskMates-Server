@@ -12,6 +12,7 @@ const ListService = {
         'list.user_id',
         'list.list_id',    
         'whs.whiskey_name',
+        'whs.image',
         'whiskey_list.list_name')
       .where('list.user_id',userId)
       .leftJoin('whiskey AS whs', 'whs.id','=', 'list.whiskey_id')
@@ -45,6 +46,7 @@ const ListService = {
       id: listData.id,
       whiskey_id: xss(listData.whiskey_id),
       listName: xss(listData.list_name),
+      image: xss(listData.image),
       whiskeyName: xss(listData.whiskey_name),
       number_of_reviews: Number(listData.number_of_reviews) || 0,
       average_review_rating: Math.round(listData.average_review_rating) || 0

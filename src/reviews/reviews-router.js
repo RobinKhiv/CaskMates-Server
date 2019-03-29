@@ -43,18 +43,18 @@ reviewsRouter
       req.app.get('db'),
       req.params.whiskey_id
     )
-      .then(reviews => {console.log(reviews);
+      .then(reviews => {
         res.json(ReviewsService.serializeWhiskeyReviews(reviews));
       })
       .catch(next);
   })
   .post(requireAuth, jsonBodyParser, (req,res,next)=>{
-    let newReview = { rating: req.body.rating };
+    let newReview = { rating: parseInt(req.body.rating) };
     const whiskeyAndUserId = {
       user_id: req.user.id,
       whiskey_id: req.params.whiskey_id
     };
-
+    console.log(req.body.tasting)
     for (const [key, value] of Object.entries(newReview))
       if (value == null)
         return res.status(400).json({
@@ -63,17 +63,17 @@ reviewsRouter
 
     newReview = Object.assign(
       newReview, 
-      req.body, 
+      req.body.tasting, 
       whiskeyAndUserId
     ); 
-
+    console.log(newReview)
     ReviewsService.insertReview(
       req.app.get('db'), 
       newReview
     )
       .then(review => {
         res.status(201)
-          .json(ReviewsService.serializeReview(review));
+          .json(review);
       })
       .catch(next);
  

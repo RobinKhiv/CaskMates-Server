@@ -1,10 +1,7 @@
 CREATE TABLE whiskey_reviews (
     id SERIAL PRIMARY KEY,
     rating INTEGER NOT NULL,
-    nose text,
-    palate text,
-    finish text,
-    additional_comments text,
+    tasting text not null,
     date_created TIMESTAMP DEFAULT now() NOT NULL,
     whiskey_id INTEGER
         REFERENCES whiskey(id) ON DELETE CASCADE NOT NULL,
