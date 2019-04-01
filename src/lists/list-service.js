@@ -16,16 +16,13 @@ const ListService = {
         'whiskey_list.list_name')
       .where('list.user_id',userId)
       .leftJoin('whiskey AS whs', 'whs.id','=', 'list.whiskey_id')
-      .leftJoin('whiskey_list', 'whiskey_list.id', '=', 'list.list_id')
+      .leftJoin('whiskey_list', 'whiskey_list.id', '=', 'list.list_id');
   },
   insertItemIntoList(db, item){
     return db
       .insert(item)
       .into('user_list')
       .returning('*');
-  },
-  serializeWhiskeyLists(lists){
-    return lists.map(this.serializeWhiskeyList);
   },
   deleteListItem(db, listId, userId){
     return db
@@ -39,9 +36,12 @@ const ListService = {
       .where({ id, user_id })
       .update(newListFields);
   },
+  serializeWhiskeyLists(lists){
+    return lists.map(this.serializeWhiskeyList);
+  },
   serializeWhiskeyList(list){
     const listTree = new Treeize();
-    const listData = listTree.grow([list]).getData()[0]
+    const listData = listTree.grow([list]).getData()[0];
     return {
       id: listData.id,
       whiskey_id: xss(listData.whiskey_id),
@@ -52,6 +52,5 @@ const ListService = {
       average_review_rating: Math.round(listData.average_review_rating) || 0
     };
   }
-
 };
 module.exports = ListService;

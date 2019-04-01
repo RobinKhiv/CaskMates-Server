@@ -1,7 +1,6 @@
 const express = require('express')
 const WhiskeysService = require('./whiskey-service')
 const { requireAuth } = require('../middleware/jwt-auth')
-// const path = require('path');
 
 const whiskeysRouter = express.Router()
 const jsonBodyParser = express.json()
@@ -37,7 +36,6 @@ whiskeysRouter
       .then(whiskey => {
         res
           .status(201)
-          // .location(path.posix.join(req.originalUrl, `/${whiskey.id}`))
           .json(whiskey.id)
       })
       .catch(next);

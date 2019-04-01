@@ -22,6 +22,7 @@ listRouter
     const {whiskey_id, list_id} = req.body;
     const newItemInList = {whiskey_id, list_id};
     for(const[key, value] of Object.entries(newItemInList))
+      // eslint-disable-next-line eqeqeq
       if(value == null)
         return res.status(400).json({
           error: `Missing '${key}' in request body`
@@ -34,6 +35,7 @@ listRouter
       .then(() => res.status(201))
       .catch(next);
   });
+
 listRouter
   .route('/:listId')
   .all(requireAuth)
@@ -52,6 +54,7 @@ listRouter
     const {whiskey_id, list_id } =req.body;
     const newListFields = {whiskey_id, list_id};
     for(const[key, value] of Object.entries(newListFields))
+      // eslint-disable-next-line eqeqeq
       if(value == null)
         return res.status(400).json({
           error: `Missing '${key}' in request body`

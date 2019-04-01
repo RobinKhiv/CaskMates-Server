@@ -1,5 +1,6 @@
 const xss = require('xss');
 const Treeize = require('treeize');
+const userFields = require('../Utils/user-fields');
 
 const ReviewsService = {
   getById(db, id) {
@@ -67,7 +68,6 @@ const ReviewsService = {
   serializewhiskeyReview(review) {
     const reviewTree = new Treeize();
     const reviewData = reviewTree.grow([ review ]).getData()[0];
-    // this.serializeReview(reviewData);
     return {
       id: reviewData.id,
       rating: reviewData.rating,
@@ -75,26 +75,7 @@ const ReviewsService = {
       whiskey_id: reviewData.whiskey_id,
       date_created: reviewData.date_created,
       user: reviewData.user || {},
-
-    };
-  },
-  serializeReview(review) {
-    return {
-      id: review.id,
-      rating: review.rating,
-      tasting: xss(review.tasting),
-      whiskey_id: review.whiskey_id,
-      date_created: review.date_created,
-      user: review.user || {},
     };
   }
 };
-const userFields = [
-  'usr.id AS user:id',
-  'usr.user_name AS user:user_name',
-  'usr.full_name AS user:full_name',
-  'usr.nickname AS user:nickname',
-  'usr.date_created AS user:date_created',
-  'usr.date_modified AS user:date_modified',
-];
 module.exports = ReviewsService;

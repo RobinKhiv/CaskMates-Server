@@ -37,7 +37,16 @@ VALUES
    'This 5th. edition of The Boss Hog, The Spirit of Mauve, is a 13 Year Straight Rye Whiskey finished in Calvados Casks in honor of our celebrity pet pig, Mauve’s undying love of apples. The result is extraordinary. A unique blend of sweet and spiced flavors with a fine balance between American power and French sophistication. There’s nothing else like it.', 
    'Mulled cider, cardamom, candied ginger and a touch of piper tobacco. Caramel, vanilla and gentle Rye spice develops with time in the glass.', 
    'Maple syrup and pears are balanced by dark chocolate and French oak spice. With water, the spice moves front and center and a vibrant, fruit-forward character develops.', 
-   'Lasting spice and a touch of charred oak and caramel, maple syrup lingers as the finish fades.', 1 );
+   'Lasting spice and a touch of charred oak and caramel, maple syrup lingers as the finish fades.', 1 ),
+  ('Jameson Caskmates IPA', 'https://www.totalwine.com/dynamic/490x/media/sys_master/twmmedia/h3d/hb4/11436729565214.png', 'Ireland', 40, 29.99, 
+  'Jameson Irish Whiskey is a blended Irish whiskey. What’s that we hear you say. Well first we take the best of pot still and fine grain whiskeys. Then we triple distil them - not because we have to because we want to as it gives it its signature smoothness. Finally, we age them in oak casks for a minimum of 4 years.',
+  'A light floral fragrance, peppered with spicy wood and sweet notes.','Theres a lemony, hoppy floral nose and finish, but it is about a level three rather than a full ten on the scale. Classic Jamo is still all around. Slick and sweet with vanilla notes that tame down those other flavors down quite a bit. Spice factor is low. This is one to just drink and not put too much thought to it. But if you are a hop head, you may not think Jameson went far enough here. However, the price point is nice enough if curiosity takes over', 'The perfect balance of spicy, nutty and vanilla notes with hints of sweet sherry and exceptional smoothness.', 4),
+  ('Jameson Irish Whiskey', 'https://cdn.liquor.com/wp-content/uploads/2018/06/13150155/jameson-bottle-800x800.jpg', 'Ireland', 40, 20.99, 
+  'Jameson Irish Whiskey is a blended Irish whiskey. What’s that we hear you say. Well first we take the best of pot still and fine grain whiskeys. Then we triple distil them - not because we have to because we want to as it gives it its signature smoothness. Finally, we age them in oak casks for a minimum of 4 years.',
+  'A light floral fragrance, peppered with spicy wood and sweet notes.','Theres a lemony, hoppy floral nose and finish, but it is about a level three rather than a full ten on the scale. Classic Jamo is still all around. Slick and sweet with vanilla notes that tame down those other flavors down quite a bit. Spice factor is low. This is one to just drink and not put too much thought to it. But if you are a hop head, you may not think Jameson went far enough here. However, the price point is nice enough if curiosity takes over', 'The perfect balance of spicy, nutty and vanilla notes with hints of sweet sherry and exceptional smoothness.', 3 ),
+  ('Jameson Caskmates Stout Edition', 'https://www.totalwine.com/dynamic/490x/media/sys_master/twmmedia/h1a/h02/10678726197278.png', 'Ireland', 40, 29.99, 
+  'Jameson Irish Whiskey is a blended Irish whiskey. What’s that we hear you say. Well first we take the best of pot still and fine grain whiskeys. Then we triple distil them - not because we have to because we want to as it gives it its signature smoothness. Finally, we age them in oak casks for a minimum of 4 years.',
+  'A light floral fragrance, peppered with spicy wood and sweet notes.','Theres a lemony, hoppy floral nose and finish, but it is about a level three rather than a full ten on the scale. Classic Jamo is still all around. Slick and sweet with vanilla notes that tame down those other flavors down quite a bit. Spice factor is low. This is one to just drink and not put too much thought to it. But if you are a hop head, you may not think Jameson went far enough here. However, the price point is nice enough if curiosity takes over', 'The perfect balance of spicy, nutty and vanilla notes with hints of sweet sherry and exceptional smoothness.', 4);
 
 INSERT INTO user_list (whiskey_id, user_id, list_id)
 VALUES
@@ -54,14 +63,13 @@ VALUES
 
 INSERT INTO whiskey_reviews (
   rating,
- tasting,
+  tasting,
   whiskey_id,
   user_id
 ) VALUES
   (
     4,
     'The initial taste is rough but it smooths out at the end',
-
     1,
     2
   ),

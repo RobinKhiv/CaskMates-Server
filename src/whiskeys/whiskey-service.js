@@ -1,5 +1,6 @@
 const xss = require('xss');
 const Treeize = require('treeize');
+const userFields = require('../Utils/user-fields');
 
 const WhiskeysService = {
   getAllWhiskeys(db) {
@@ -44,7 +45,6 @@ const WhiskeysService = {
       .first();
   },
 
-  
   insertWhiskey(db, newWhiskey) {
     return db
       .insert(newWhiskey)
@@ -66,13 +66,14 @@ const WhiskeysService = {
     return {
       id: whiskeyData.id,
       whiskey_id: whiskeyData.id,
-      whiskeyName: xss(whiskeyData.whiskey_name),
+      whiskey_name: xss(whiskeyData.whiskey_name),
       origin: xss(whiskeyData.origin),
       abv: xss(whiskeyData.abv),
       price: xss(whiskeyData.price),
       content: xss(whiskeyData.content),
       date_created: whiskeyData.date_created,
       palate: xss(whiskey.palate),
+      finish: xss(whiskey.finish),
       nose: xss(whiskey.nose),
       additional_comments: xss(whiskey.additional_comments),
       image: xss(whiskeyData.image),
@@ -82,14 +83,5 @@ const WhiskeysService = {
     };
   },
 };
-
-const userFields = [
-  'usr.id AS user:id',
-  'usr.user_name AS user:user_name',
-  'usr.full_name AS user:full_name',
-  'usr.nickname AS user:nickname',
-  'usr.date_created AS user:date_created',
-  'usr.date_modified AS user:date_modified',
-];
 
 module.exports = WhiskeysService;
