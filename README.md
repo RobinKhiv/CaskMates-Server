@@ -5,7 +5,7 @@ The Caskmates server project has all the APIs, database and all the core elemtns
 In order to POSt and Update data in this server a client will need to provide the correct jwt token corresponding to the correct username
 
 ### `Server Endpoints`
-/api/whiskeys
+/api/whiskeys <br/>
 /api/reviews
 
 ### `Technologies Used`

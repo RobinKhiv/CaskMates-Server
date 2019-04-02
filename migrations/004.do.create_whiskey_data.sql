@@ -15,7 +15,8 @@ VALUES
   ('c.bloggs', 'Charlie Bloggs', 'Charlie', '$2a$12$yUr39tJDoyPAPFzVMjxxI.v3YJlVJQW8nosfS8psRlXF./WK63XwK'),
   ('s.smith', 'Sam Smith', 'Sam', '$2a$12$yUr39tJDoyPAPFzVMjxxI.v3YJlVJQW8nosfS8psRlXF./WK63XwK'),
   ('lexlor', 'Alex Taylor', 'Lex', '$2a$12$yUr39tJDoyPAPFzVMjxxI.v3YJlVJQW8nosfS8psRlXF./WK63XwK'),
-  ('wippy', 'Ping Won In', 'Ping', '$2a$12$yUr39tJDoyPAPFzVMjxxI.v3YJlVJQW8nosfS8psRlXF./WK63XwK');
+  ('wippy', 'Ping Won In', 'Ping', '$2a$12$yUr39tJDoyPAPFzVMjxxI.v3YJlVJQW8nosfS8psRlXF./WK63XwK'),
+  ('demouser', 'John Matey', 'Mate', '$2a$12$yUr39tJDoyPAPFzVMjxxI.v3YJlVJQW8nosfS8psRlXF./WK63XwK');
 
 INSERT INTO whiskey_list (list_name)
 VALUES
