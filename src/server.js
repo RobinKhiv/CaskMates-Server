@@ -1,16 +1,13 @@
 'use strict';
 const app = require('./app');
 const knex = require('knex');
-const parse = require('pg-connection-string').parse;
-const { PORT, DATABASE_URL } = require('./config');
 
-const pgconfig = parse(DATABASE_URL);
-pgconfig.ssl = true;
+const { PORT, DATABASE_URL } = require('./config');
 
 const db = knex({
   client: 'pg',
-   connection: {
-    connectionString : process.env.DATABASE_URL,
+  connection: {
+    connectionString : DATABASE_URL,
     ssl: {rejectUnauthorized: false}
   }
 });
