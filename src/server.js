@@ -9,9 +9,9 @@ pgconfig.ssl = true;
 
 const db = knex({
   client: 'pg',
-  connection: {
-    connectionString : DATABASE_URL,
-    ssl: false
+   connection: {
+    connectionString : process.env.DATABASE_URL,
+    ssl: {rejectUnauthorized: false}
   }
 });
 
