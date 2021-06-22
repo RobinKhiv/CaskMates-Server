@@ -5,7 +5,7 @@ const parse = require('pg-connection-string').parse;
 const { PORT, DATABASE_URL } = require('./config');
 
 const pgconfig = parse(DATABASE_URL);
-pgconfig.ssl = { rejectUnauthorized: false };
+pgconfig.ssl = true;
 
 const db = knex({
   client: 'pg',
