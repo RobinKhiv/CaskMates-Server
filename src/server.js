@@ -9,7 +9,7 @@ pgconfig.ssl = true;
 
 const db = knex({
   client: 'pg',
-  connection: pgconfig
+  connection: DATABASE_URL
 });
 
 app.set('db', db);
