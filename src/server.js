@@ -1,6 +1,7 @@
 'use strict';
 const knex = require('knex');
-const app = require('./app');
+const express = require('express')
+const app = express();
 const { PORT, DB_URL } = require('./config');
 
 const db = knex({
@@ -10,7 +11,7 @@ const db = knex({
 
 app.set('db', db);
 
-app.listen(PORT, () => {
+app.listen(4000, () => {
   // eslint-disable-next-line no-console
   console.log(`Server listening at http://localhost:${PORT}`);
 });
