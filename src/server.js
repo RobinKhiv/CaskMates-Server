@@ -1,17 +1,20 @@
 'use strict';
+const app = require('./app');
 const knex = require('knex');
-const express = require('express')
-const app = express();
+const parse = require('pg-connection-string').parse;
 const { PORT, DB_URL } = require('./config');
+
+const pgconfig = parse(DB_URL);
+pgconfig.ssl = { rejectUnauthorized: false };
 
 const db = knex({
   client: 'pg',
-  connection: DB_URL
+  connection: pgconfig
 });
 
 app.set('db', db);
 
-app.listen(4000, () => {
+app.listen(PORT, () => {
   // eslint-disable-next-line no-console
   console.log(`Server listening at http://localhost:${PORT}`);
 });
